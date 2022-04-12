@@ -21,7 +21,6 @@ router.post('/',
       } = req.body;
 
       const emailExist = await User.findOne({ where: { email } });
-      console.log(emailExist);
       if (emailExist) {
         return res.status(409).send({ message: 'User already registered' });
       }
