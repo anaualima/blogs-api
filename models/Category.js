@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     name: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
-  }, { tableName: 'Categories' });
+    // createdAt: DataTypes.DATE,
+    // updatedAt: DataTypes.DATE,
+  }, { tableName: 'Categories', timestamps: false });
   return Category;
 };

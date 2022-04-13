@@ -6,12 +6,11 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     title: DataTypes.STRING,
-    constent: DataTypes.STRING,
+    content: DataTypes.STRING,
     userId: { type: DataTypes.INTEGER, references: { key: 'id', model: 'Users' } },
-    image: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
-  }, { tableName: 'BlogPosts' });
+    published: { type: DataTypes.DATE, deafultValue: new Date() },
+    updated: { type: DataTypes.DATE, deafultValue: new Date() },
+  }, { tableName: 'BlogPosts', timestamps: false });
 
   BlogPost.associate = (models) => {
     BlogPost.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });

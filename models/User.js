@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     image: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
-  }, { tableName: 'Users' });
+    // createdAt: DataTypes.DATE,
+    // updatedAt: DataTypes.DATE,
+  }, { tableName: 'Users', timestamps: false });
   
   User.associate = (models) => {
     User.hasMany(models.BlogPost, { foreignKey: 'userId', as: 'posts' });
