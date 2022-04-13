@@ -1,12 +1,11 @@
 const secreteToken = require('./secreteToken');
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
     return res.status(401).send({ message: 'Token not found' });
   }
-  console.log('aqui', authorization);
   try {
     const decoded = secreteToken(authorization);
     req.user = decoded.data;

@@ -46,4 +46,19 @@ router.get('/', tokenValidate, async (req, res) => {
   }
 });
 
+router.get('/:id', tokenValidate, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findByPk(id);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User does not exist' });
+    }
+    return res.status(200).send(user);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).end();
+  }
+});
+
 module.exports = router;
