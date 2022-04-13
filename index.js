@@ -1,6 +1,7 @@
 const express = require('express');
 const userRouter = require('./controllers/User');
 const loginRouter = require('./controllers/Login');
+const categoryRouter = require('./controllers/Category');
 
 const PORT = process.env.PORT || 3000;
 
@@ -10,6 +11,7 @@ app.use(express.json());
 
 app.use('/user', userRouter);
 app.use('/login', loginRouter);
+app.use('/categories', categoryRouter);
 
 app.listen(PORT, () => console.log('ouvindo porta 3000!'));
 
