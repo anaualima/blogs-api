@@ -19,4 +19,15 @@ router.post('/', nameCategory, tokenValidate, async (req, res) => {
   }
 });
 
+router.get('/', tokenValidate, async (req, res) => {
+  try {
+    const categories = await Category.findAll();
+    console.log(categories, 'AQUI');
+    return res.status(200).send(categories);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).end();
+  }
+});
+
 module.exports = router;
