@@ -14,13 +14,13 @@ router.post('/',
     try {
       const { email, password } = req.body;
 
-      const userExist = await User.findOne({ where: { email } });
+      const userExist = await User.findOne({ where: { email, password } });
       if (!userExist) {
         return res.status(400).send({ message: 'Invalid fields' });
       }
-      await User.create({ email, password });
+      // await User.create({ email, password });
 
-      return res.status(200).json({ token: token(email) });
+      return res.status(200).json({ token: token({ id: userExist.id, email: userExist.email }) });
     } catch (e) {
       console.log(e.message);
       return res.status(500).end();

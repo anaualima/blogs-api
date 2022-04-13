@@ -2,6 +2,7 @@ const express = require('express');
 const userRouter = require('./controllers/User');
 const loginRouter = require('./controllers/Login');
 const categoryRouter = require('./controllers/Category');
+const postRouter = require('./controllers/Post');
 
 const PORT = process.env.PORT || 3000;
 
@@ -10,6 +11,7 @@ const app = express();
 app.use(express.json());
 
 app.use('/user', userRouter);
+app.use('/post', postRouter);
 app.use('/login', loginRouter);
 app.use('/categories', categoryRouter);
 
