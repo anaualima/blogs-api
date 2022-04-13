@@ -5,6 +5,7 @@ const router = express.Router();
 
 const loginEmail = require('./middleware/loginEmail');
 const loginPassword = require('./middleware/loginPassword');
+const token = require('./middleware/token');
 
 router.post('/',
   loginEmail,
@@ -17,9 +18,9 @@ router.post('/',
       if (!userExist) {
         return res.status(400).send({ message: 'Invalid fields' });
       }
-      const create = await User.create({ email, password });
+      await User.create({ email, password });
 
-      return res.status(200).send(create);
+      return res.status(200).json({ token: token(email) });
     } catch (e) {
       console.log(e.message);
       return res.status(500).end();
